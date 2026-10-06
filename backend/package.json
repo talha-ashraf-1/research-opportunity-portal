@@ -1,0 +1,29 @@
+{
+    "name": "research-portal-backend",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon index.js",
+        "start": "node index.js",
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma migrate dev",
+        "db:studio": "prisma studio"
+    },
+    "engines": {
+        "node": ">=22.18.0"
+    },
+    "dependencies": {
+        "@prisma/adapter-pg": "^7.0.0",
+        "@prisma/client": "^7.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^5.1.0",
+        "express-rate-limit": "^8.0.0",
+        "pg": "^8.13.0",
+        "zod": "^4.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0",
+        "prisma": "^7.0.0"
+    }
+}
