@@ -1,0 +1,30 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../generated/prisma"
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  Open
+  Closed
+}
+
+model opportunities{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  researchArea String
+  facultyName String
+  department String
+  requiredSkills String
+  positions Int
+  deadline DateTime
+  status Status @default(Open)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
