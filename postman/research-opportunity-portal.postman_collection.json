@@ -1,0 +1,393 @@
+{
+  "info": {
+    "name": "Research Opportunity Portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Run requests in order (1a to 8). Ids are saved automatically between requests. Deadlines must not be in the past when creating."
+  },
+  "item": [
+    {
+      "name": "1a. Create opportunity #1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Deep Learning for Medical Imaging\",\n  \"description\": \"Research on CNN models for early disease detection in X-ray images.\",\n  \"researchArea\": \"Artificial Intelligence\",\n  \"facultyName\": \"Dr. Ayesha Khan\",\n  \"department\": \"Computer Science\",\n  \"requiredSkills\": \"Python, PyTorch, Computer Vision\",\n  \"positions\": 2,\n  \"deadline\": \"2026-12-31\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+              "const id = pm.response.json().data.id;",
+              "pm.collectionVariables.set(\"id1\", id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "1b. Create opportunity #2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Secure IoT Communication Protocols\",\n  \"description\": \"Designing lightweight encryption for low-power IoT sensor networks.\",\n  \"researchArea\": \"Cyber Security\",\n  \"facultyName\": \"Dr. Imran Shah\",\n  \"department\": \"Computer Science\",\n  \"requiredSkills\": \"C, Networking, Cryptography\",\n  \"positions\": 3,\n  \"deadline\": \"2026-12-15\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+              "const id = pm.response.json().data.id;",
+              "pm.collectionVariables.set(\"id2\", id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "1c. Create opportunity #3",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Usable Interfaces for Low-Literacy Users\",\n  \"description\": \"Studying interface design patterns for users with limited literacy.\",\n  \"researchArea\": \"Human Computer Interaction\",\n  \"facultyName\": \"Dr. Sara Malik\",\n  \"department\": \"Computer Science\",\n  \"requiredSkills\": \"UX Research, React, Figma\",\n  \"positions\": 1,\n  \"deadline\": \"2027-01-20\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+              "const id = pm.response.json().data.id;",
+              "pm.collectionVariables.set(\"id3\", id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Get all opportunities",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Get one opportunity by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{id1}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{id1}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Update opportunity (title, skills, positions, deadline)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{id1}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{id1}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Deep Learning for Medical Image Analysis\",\n  \"requiredSkills\": \"Python, PyTorch, TensorFlow, Computer Vision\",\n  \"positions\": 4,\n  \"deadline\": \"2027-02-28\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Change status Open to Closed",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{id2}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{id2}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Closed\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Status is Closed\", () => pm.expect(pm.response.json().data.status).to.eql(\"Closed\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Delete opportunity",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{id3}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{id3}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Get deleted opportunity (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{id3}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{id3}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Invalid / missing data (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Hi\",\n  \"positions\": \"two\",\n  \"deadline\": \"not-a-date\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "id1",
+      "value": ""
+    },
+    {
+      "key": "id2",
+      "value": ""
+    },
+    {
+      "key": "id3",
+      "value": ""
+    }
+  ]
+}
